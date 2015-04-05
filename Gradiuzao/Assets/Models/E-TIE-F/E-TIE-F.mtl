@@ -1,0 +1,66 @@
+newmtl A_TIE_WINDOW
+Ka 0 0 0
+Ns 7.24274
+Ks 1 1 1
+Kd 0.0784314 0 0
+map_Kd A_TIE_WINDOW.jpg
+newmtl White_porcelain0
+Ka 0 0 0
+Ns 164.022
+Ks 1 1 1
+Kd 0.862745 0.866667 0.905882
+map_Kd White_porcelain0_1.jpg
+newmtl Metallic_Varnish
+Ka 0 0 0
+Ns 6.42374
+Ks 0.47451 0.85098 1
+Kd 0.905882 0.384314 0.156863
+map_Kd Metallic_Varnish_2.jpg
+newmtl White_porcelain1
+Ka 0 0 0
+Ns 164.022
+Ks 1 1 1
+Kd 0.862745 0.866667 0.905882
+map_Kd White_porcelain1_3.jpg
+newmtl White_porcelain2
+Ka 0 0 0
+Ns 164.022
+Ks 1 1 1
+Kd 0.862745 0.866667 0.905882
+map_Kd White_porcelain2_4.jpg
+newmtl White_porcelain3
+Ka 0 0 0
+Ns 164.022
+Ks 1 1 1
+Kd 0.862745 0.866667 0.905882
+map_Kd White_porcelain3_5.jpg
+newmtl GRAY
+Ka 0 0 0
+Ns 8.16617
+Ks 0.101961 0.101961 0.101961
+Kd 0.101961 0.101961 0.101961
+map_Kd GRAY_6.jpg
+newmtl BLAST_RED0
+Ka 0 0 0
+Ns 1
+Ks 1 0.0509804 0.0509804
+Kd 1 0.0509804 0.0509804
+map_Kd BLAST_RED0_7.jpg
+newmtl GREY_DARK
+Ka 0 0 0
+Ns 2.6117
+Ks 0.529412 0.529412 0.529412
+Kd 0.129412 0.129412 0.129412
+map_Kd GREY_DARK_8.jpg
+newmtl Blue_glass
+Ka 0 0 0
+Ns 34.4669
+Ks 1 1 1
+Kd 0 0 1
+map_Kd Blue_glass_9.jpg
+newmtl BLAST_RED1
+Ka 0 0 0
+Ns 1
+Ks 1 0.0509804 0.0509804
+Kd 1 0.0509804 0.0509804
+map_Kd BLAST_RED1_10.jpg

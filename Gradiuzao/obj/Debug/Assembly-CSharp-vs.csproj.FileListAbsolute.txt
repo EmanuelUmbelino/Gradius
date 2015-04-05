@@ -1,0 +1,12 @@
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\Temp\bin\Debug\UnityEngine.UI.dll
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\Temp\bin\Debug\nunit.framework.dll
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\obj\Debug\Assembly-CSharp.dll
+C:\Users\Emanuel Messias\Downloads\Gradiuzao\obj\Debug\Assembly-CSharp.pdb
