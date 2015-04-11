@@ -40,6 +40,7 @@ public class SpawnController : MonoBehaviour {
             }
             if (counter_2 > 2)
             {
+                print("eu");
                 shooter_spawn = (GameObject)Instantiate(enemyShooter, enemyShooter.transform.position = new Vector3(transform.position.x, Random.Range(transform.position.y + 4, transform.position.y - 4), transform.position.z), enemyShooter.transform.rotation);
                 shooter_spawn.transform.parent = shooterRotater.transform;
                 counter_2 = 0;

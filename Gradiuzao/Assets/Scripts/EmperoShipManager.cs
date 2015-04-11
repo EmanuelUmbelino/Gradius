@@ -6,6 +6,7 @@ public class EmperoShipManager : MonoBehaviour {
     public LensFlare lf2;
     public LensFlare lf3;
     int counter = 0;
+	//public static bool start = false;
 	void Start () 
     {
 	}
@@ -18,6 +19,7 @@ public class EmperoShipManager : MonoBehaviour {
             lf1.brightness -= 0.0002f;
             lf2.brightness -= 0.0002f;
             lf3.brightness -= 0.0002f;
+
         }
         else if (lf1.brightness < 2.7f && counter < 90)
         {
@@ -25,6 +27,7 @@ public class EmperoShipManager : MonoBehaviour {
             lf2.brightness += 0.02f;
             lf3.brightness += 0.02f;
             counter++;
+
         }
         if (counter > 80)
         {
@@ -32,6 +35,7 @@ public class EmperoShipManager : MonoBehaviour {
             lf1.brightness -= 0.2f;
             lf2.brightness -= 0.2f;
             lf3.brightness -= 0.2f;
+			//start = true;
         }
         if (lf1.brightness <= 0.001f && transform.position.z  > 50000)
             Destroy(gameObject);

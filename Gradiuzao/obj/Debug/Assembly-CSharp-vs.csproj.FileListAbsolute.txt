@@ -10,3 +10,5 @@ C:\Users\Emanuel Messias\Downloads\Gradiuzao\Temp\bin\Debug\ICSharpCode.NRefacto
 C:\Users\Emanuel Messias\Downloads\Gradiuzao\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
 C:\Users\Emanuel Messias\Downloads\Gradiuzao\obj\Debug\Assembly-CSharp.dll
 C:\Users\Emanuel Messias\Downloads\Gradiuzao\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Emanuel Messias\Documents\Gradius_ComYouLose3\Gradiuzao\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+C:\Users\Emanuel Messias\Documents\Gradius_ComYouLose3\Gradiuzao\obj\Debug\Assembly-CSharp.dll

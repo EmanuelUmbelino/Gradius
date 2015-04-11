@@ -5,43 +5,64 @@ public class EnemyBalanceBehaviour : MonoBehaviour {
 
     float speed = 1f;
     float speedy = 0.05f;
-    float counter = 0;
+    int counter = 0;
+    bool colidiu = false;
     int direction = Random.Range(0, 2);
+    public GameObject[] pieces;
 	// Use this for initialization
 	void Start () {
+        colidiu = false;
         if (direction.Equals(0)) direction = -1;
+       // pieces = GameObject.FindGameObjectsWithTag("Piece");
 	}
 	void OnTriggerEnter(Collider col)
 	{
-        if (col.gameObject.tag != "Boss")
+        if (col.gameObject.tag != "Boss" && col.gameObject.tag != "Enemy" && col.gameObject.tag != "MisselEnemy")
         {
-            Destroy(gameObject);
+            //gameObject.collider.enabled = false;
+          
+            if (col.gameObject.tag.Equals("Missel") || col.gameObject.tag.Equals("Missel2"))
+            {
+                colidiu = true;
+                gameObject.collider.enabled = false;
+                for (int i = 0; i < pieces.Length; i++)
+                {
+                    pieces[i].gameObject.rigidbody.velocity = new Vector3(Random.Range(-9, 9), Random.Range(-9, 9), Random.Range(-9, 9));
+                }
+            }
             col.gameObject.renderer.enabled = false;
             col.gameObject.collider.enabled = false;
             if (col.gameObject.tag == "Missel")
-                PlayerBehaviour.score += 50;
+                ScoreManager.score += 50;
             if (col.gameObject.tag == "Missel2")
-                PlayerBehaviour.score2 += 50;
+                ScoreManager.score2 += 50;
         }
     }
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag != "Enemy" && col.gameObject.tag != "Missel")
+        if (col.gameObject.tag.Equals("Finish"))
+        {
             Destroy(gameObject);
+        }
+        if (col.gameObject.tag.Equals("Player"))
+        {
+            for (int i = 0; i < pieces.Length; i++)
+            {
+                pieces[i].gameObject.rigidbody.velocity = new Vector3(Random.Range(-9, 9), Random.Range(-9, 9), Random.Range(-9, 9));
+            }
+        }
+       
     }
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(0, 0, 2);
-        if (counter < 5 && counter >= 0)
+        counter += 1;
+        if (counter > 150)
         {
-            transform.Translate(0, direction * speedy, 0);
-            counter += 0.2f;
+            colidiu = false;
+            Destroy(gameObject);
         }
-        if (counter < 0)
-        {
-            transform.Translate(0, direction * -speedy, 0);
-            counter += 0.2f;
-        }
-        if (counter >= 5) counter = -5;
+        if (!colidiu)
+            transform.Rotate(0, 0, 2);
+      
 	}
 }
