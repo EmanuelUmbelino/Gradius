@@ -3,17 +3,15 @@ using System.Collections;
 
 public class EnemyBalanceBehaviour : MonoBehaviour {
 
-    float speed = 1f;
+    Vector3 speed;
     float speedy = 0.05f;
-    int counter = 0;
-    bool colidiu = false;
     int direction = Random.Range(0, 2);
     public GameObject[] pieces;
 	// Use this for initialization
 	void Start () {
-        colidiu = false;
         if (direction.Equals(0)) direction = -1;
        // pieces = GameObject.FindGameObjectsWithTag("Piece");
+        
 	}
 	void OnTriggerEnter(Collider col)
 	{
@@ -23,7 +21,7 @@ public class EnemyBalanceBehaviour : MonoBehaviour {
           
             if (col.gameObject.tag.Equals("Missel") || col.gameObject.tag.Equals("Missel2"))
             {
-                colidiu = true;
+                StartCoroutine(CallInitication());
                 gameObject.collider.enabled = false;
                 for (int i = 0; i < pieces.Length; i++)
                 {
@@ -55,14 +53,12 @@ public class EnemyBalanceBehaviour : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        counter += 1;
-        if (counter > 150)
-        {
-            colidiu = false;
-            Destroy(gameObject);
-        }
-        if (!colidiu)
+        if(gameObject.collider.enabled.Equals(true))
             transform.Rotate(0, 0, 2);
-      
 	}
+    IEnumerator CallInitication()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
+    }
 }

@@ -2,55 +2,60 @@
 using System.Collections;
 
 public class LookAt : MonoBehaviour {
-    public Transform target;
+    public Transform target; 
+    public Transform target2;
     public GameObject missel;
     public Light light;
     GameObject shoot;
 	Vector3 posicao_p1;
     GameObject rotarer;
-    int counter = 0;
    
 	// Use this for initialization
 	void Start () {
-        rotarer = GameObject.Find("PlayerRotation");
-	
+        rotarer = GameObject.Find("OORotation");
+        StartCoroutine(CallInitication());
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        transform.LookAt(target);
+    void Update()
+    {
         missel.transform.LookAt(target);
-        if (counter >= 0)
-        {
+        if (DeathStar.boss)
             light.range += 0.015f;
-            counter++;
-        }
-        if (counter == 90)
-        {
-            shoot = null;
+        if (target.Equals(null))
+            transform.LookAt(target2);
+        else
+            transform.LookAt(target);
+        if (DeathStar.boss && target.Equals(null))
+            light.range = 0;
+	}
+    IEnumerator CallInitication()
+    {
+        yield return new WaitForSeconds(2);
+        shoot = null;
+        if (target != null)
             posicao_p1 = target.position;
-        }
-        if (counter > 100)
+        yield return new WaitForSeconds(1);
+        if (target != null && DeathStar.boss)
         {
             shoot = (GameObject)Instantiate(missel, missel.transform.position, missel.transform.rotation);
+            shoot.transform.LookAt(target);
             shoot.transform.parent = rotarer.transform;
-            counter = 0;
             light.range = 0.6f;
             MoveTowardsTarget();
-           
         }
-	
-	}
+        StartCoroutine(CallInitication());
+    }
     private void MoveTowardsTarget()
     {
-        float speed = 500;
+        float speed = 30;
         Vector3 targetPosition = posicao_p1;
         Vector3 currentPosition = shoot.transform.position; 
         Vector3 directionOfTravel = targetPosition - currentPosition;
         directionOfTravel.Normalize();
         shoot.rigidbody.velocity = new Vector3(
-            (directionOfTravel.x * speed * Time.deltaTime),
-            (directionOfTravel.y * speed * Time.deltaTime),
-            (directionOfTravel.z * speed * Time.deltaTime));
+            (directionOfTravel.x * speed),
+            (directionOfTravel.y * speed),
+            (directionOfTravel.z * speed));
     }
 }

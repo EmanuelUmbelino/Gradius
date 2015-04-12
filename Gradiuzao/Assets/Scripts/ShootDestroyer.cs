@@ -3,16 +3,18 @@ using System.Collections;
 
 public class ShootDestroyer : MonoBehaviour {
 
-    int counter;
 	// Use this for initialization
 	void Start () {
-	
+        StartCoroutine(CallInitication());
 	}
 	// Update is called once per frame
 	void Update () {
-        if(gameObject.name.Equals("Capsule(Clone)"))
-	        counter ++;
-        if (counter > 50)
-            Destroy(gameObject);
+        
 	}
+    IEnumerator CallInitication()
+    {
+        yield return new WaitForSeconds(7);
+        if(gameObject.name.Equals("Capsule(Clone)"))
+            Destroy(gameObject);
+    }
 }

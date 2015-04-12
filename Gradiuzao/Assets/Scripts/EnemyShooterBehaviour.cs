@@ -9,16 +9,14 @@ public class EnemyShooterBehaviour : MonoBehaviour {
     public GameObject fire; 
     GameObject rotarer;
     Vector3 random;
-    int counter;
     GameObject shoot;
-    int counter2 = 0;
     
 
 	// Use this for initialization
 	void Start () {
         rotarer = GameObject.Find("ShootRotation");
         gameObject.collider.enabled = true;
-
+        StartCoroutine(CallInitication());
 	}
     void OnTriggerEnter(Collider col)
     {
@@ -36,7 +34,7 @@ public class EnemyShooterBehaviour : MonoBehaviour {
     }
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag != "Enemy" && col.gameObject.tag != "MisselEnemy")
+        if (col.gameObject.tag != "Boss" && col.gameObject.tag != "Enemy" && col.gameObject.tag != "MisselEnemy")
         {
             Destroy(missel);
             Destroy(gameObject);
@@ -45,25 +43,27 @@ public class EnemyShooterBehaviour : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        if (fire.activeSelf.Equals(false))
-        {
-            if (counter < 15) counter++;
-            else
-            {
-                shoot = (GameObject)Instantiate(missel, missel.transform.position, missel.transform.rotation);
-                shoot.transform.position = new Vector3(missel.transform.position.x, missel.transform.position.y, missel.transform.position.z);
-                shoot.rigidbody.velocity = new Vector3(0, 0, 0);
-                shoot.transform.parent = rotarer.transform;
-                counter = 0;
-                print(counter);
-            }
-        }
-        else
+        if (fire.activeSelf.Equals(true))
         {
             transform.Rotate(random);
-            if (counter2 < 150) counter2++;
-            else Destroy(gameObject);
+            StartCoroutine(ToDye());
         }
+    }
+    IEnumerator CallInitication()
+    {
+        yield return new WaitForSeconds(0.5f); 
+        shoot = (GameObject)Instantiate(missel, missel.transform.position, missel.transform.rotation);
+        shoot.transform.position = new Vector3(missel.transform.position.x, missel.transform.position.y, missel.transform.position.z);
+        shoot.rigidbody.velocity = new Vector3(0, 0, 0);
+        shoot.transform.parent = rotarer.transform; 
+        if (fire.activeSelf.Equals(false))
+            StartCoroutine(CallInitication());
+    }
+    IEnumerator ToDye()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(missel);
+        Destroy(gameObject);
     }
 
 }

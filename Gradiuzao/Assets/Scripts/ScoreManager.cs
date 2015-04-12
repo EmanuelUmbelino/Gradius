@@ -8,14 +8,14 @@ public class ScoreManager : MonoBehaviour {
     public static float score2 = 0;
     public GameObject Texto;
     public GameObject Texto2;
-    public static bool ativado;
+    public static bool ativado = false;
     public static int Dyes = 0;
 	// Use this for initialization
     void Start()
     {
-        ativado = false;
         score = 0;
-        score2 = 0;
+        score2 = 0; 
+        Dyes = 0;
 	}
 	
 	// Update is called once per frame

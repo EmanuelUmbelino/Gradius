@@ -46,21 +46,25 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MoonMoviment.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Choose_YouLose.cs" />
+     <Compile Include="Assets\Scripts\Choose_YouLose2.cs" />
      <Compile Include="Assets\Scripts\DeathStar.cs" />
+     <Compile Include="Assets\Scripts\DeathStarLifeBehaviour.cs" />
      <Compile Include="Assets\Scripts\Destroyer.cs" />
      <Compile Include="Assets\Scripts\EmperoShipManager.cs" />
      <Compile Include="Assets\Scripts\EnemyBalanceBehaviour.cs" />
      <Compile Include="Assets\Scripts\EnemyShooterBehaviour.cs" />
      <Compile Include="Assets\Scripts\LookAt.cs" />
      <Compile Include="Assets\Scripts\MenuSelectBehaviour.cs" />
-     <Compile Include="Assets\Scripts\MoonMoviment.cs" />
      <Compile Include="Assets\Scripts\PlayerBehaviour.cs" />
      <Compile Include="Assets\Scripts\Rotation.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\ShootDestroyer.cs" />
      <Compile Include="Assets\Scripts\SpawnController.cs" />
+     <Compile Include="Assets\Scripts\Sun_YouWin.cs" />
+     <Compile Include="Assets\Scripts\canvasGameOver.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

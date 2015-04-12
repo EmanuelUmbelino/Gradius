@@ -6,6 +6,7 @@ public class PlayerBehaviour : MonoBehaviour {
     float speed = 7;
     float speed2 = 7;
     public GameObject Player2;
+    public GameObject enemy2;
     public GameObject missel;
     public GameObject missel2;
     public GameObject nave;
@@ -44,17 +45,17 @@ public class PlayerBehaviour : MonoBehaviour {
 	{
 		if (player1) {
 			if (Input.GetAxis ("Player_H") < 0)
-				transform.Translate (0, Input.GetAxis ("Player_H") * speed * -1 * Time.deltaTime, 0);
+				transform.Translate (0, Input.GetAxis ("Player_H") * speed * -2 * Time.deltaTime, 0);
 			if (Input.GetAxis ("Player_H") > 0)
-				transform.Translate (0, Input.GetAxis ("Player_H") * speed * -1 * Time.deltaTime, 0);
+				transform.Translate (0, Input.GetAxis ("Player_H") * speed * -2 * Time.deltaTime, 0);
 			if (Input.GetAxis ("Player_V") < 0) {
-				transform.Translate (0, 0, Input.GetAxis ("Player_V") * speed * Time.deltaTime);
+				transform.Translate (0, 0, Input.GetAxis ("Player_V") * speed * 2 * Time.deltaTime);
 				nave.transform.Rotate (0, 0, 2f);
 				if (nave.transform.rotation.eulerAngles.z > 45 && nave.transform.rotation.eulerAngles.z < 100)
 					nave.transform.rotation = Quaternion.Euler (nave.transform.rotation.eulerAngles.x, nave.transform.rotation.eulerAngles.y, 45);
 			}
 			if (Input.GetAxis ("Player_V") > 0) {
-				transform.Translate (0, 0, Input.GetAxis ("Player_V") * speed * Time.deltaTime);
+                transform.Translate(0, 0, Input.GetAxis("Player_V") * speed * 2 * Time.deltaTime);
 				nave.transform.Rotate (0, 0, -2f);
 				if (nave.transform.rotation.eulerAngles.z < 320 && nave.transform.rotation.eulerAngles.z > 300)
 					nave.transform.rotation = Quaternion.Euler (nave.transform.rotation.eulerAngles.x, nave.transform.rotation.eulerAngles.y, 320);
@@ -75,22 +76,22 @@ public class PlayerBehaviour : MonoBehaviour {
 				atirou = false;
 			}
 			if (atirou) {
-				tiro.rigidbody.velocity = new Vector3 (speed * Time.deltaTime + 40, tiro.rigidbody.velocity.y, tiro.rigidbody.velocity.z); 
+				tiro.rigidbody.velocity = new Vector3 (speed * Time.deltaTime + 40,tiro.rigidbody.velocity.y, tiro.rigidbody.velocity.z); 
 			}
 		} 
         else {
 			if (Input.GetAxis ("Player2_H") < 0)
-				transform.Translate (0, Input.GetAxis ("Player2_H") * speed2 * -1 * Time.deltaTime, 0);
+				transform.Translate (0, Input.GetAxis ("Player2_H") * speed2 * -2 * Time.deltaTime, 0);
 			if (Input.GetAxis ("Player2_H") > 0)
-				transform.Translate (0, Input.GetAxis ("Player2_H") * speed2 * -1 * Time.deltaTime, 0);
+				transform.Translate (0, Input.GetAxis ("Player2_H") * speed2 * -2 * Time.deltaTime, 0);
 			if (Input.GetAxis ("Player2_V") < 0) {
-				transform.Translate (0, 0, Input.GetAxis ("Player2_V") * speed2 * Time.deltaTime);
+                transform.Translate(0, 0, Input.GetAxis("Player2_V") * speed2 * 2 * Time.deltaTime);
 				nave2.transform.Rotate (0, 0, 2f);
 				if (nave2.transform.rotation.eulerAngles.z > 45 && nave2.transform.rotation.eulerAngles.z < 100)
 					nave2.transform.rotation = Quaternion.Euler (nave2.transform.rotation.eulerAngles.x, nave2.transform.rotation.eulerAngles.y, 45);
 			}
 			if (Input.GetAxis ("Player2_V") > 0) {
-				transform.Translate (0, 0, Input.GetAxis ("Player2_V") * speed2 * Time.deltaTime);
+                transform.Translate(0, 0, Input.GetAxis("Player2_V") * speed2 * 2 * Time.deltaTime);
 				nave2.transform.Rotate (0, 0, -2f);
 				if (nave2.transform.rotation.eulerAngles.z < 320 && nave2.transform.rotation.eulerAngles.z > 300)
 					nave2.transform.rotation = Quaternion.Euler (nave2.transform.rotation.eulerAngles.x, nave2.transform.rotation.eulerAngles.y, 320);
@@ -113,13 +114,15 @@ public class PlayerBehaviour : MonoBehaviour {
 			if (atirou2)
 				tiro2.rigidbody.velocity = new Vector3 (speed2 * Time.deltaTime + 40, tiro2.rigidbody.velocity.y, tiro2.rigidbody.velocity.z);
 		}
-		if (!ScoreManager.ativado)
-		{
-			if (Input.GetAxis ("Player2_Go") != 0 && !Player2.gameObject.activeSelf || MenuSelectBehaviour.Options == "Player2" && !Player2.gameObject.activeSelf) 
-			{
-				Player2.gameObject.SetActive (true);
+        if (!ScoreManager.ativado)
+        {
+            if (Input.GetAxis("Player2_Go") != 0 && !Player2.gameObject.activeSelf || MenuSelectBehaviour.Options == "Player2" && !Player2.gameObject.activeSelf)
                 ScoreManager.ativado = true;
-			}
-		}
+        }
+        else if(Player2 != null)
+        {
+            Player2.gameObject.SetActive(true);
+            enemy2.gameObject.SetActive(true);
+        }
 	}
 }
