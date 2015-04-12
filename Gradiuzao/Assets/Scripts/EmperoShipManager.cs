@@ -6,7 +6,7 @@ public class EmperoShipManager : MonoBehaviour {
     public LensFlare lf2;
     public LensFlare lf3;
     bool ativo;
-    bool run;
+    public static bool run;
 	//public static bool start = false;
 	void Start ()
     {

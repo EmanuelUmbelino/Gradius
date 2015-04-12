@@ -5,8 +5,11 @@ public class PlayerBehaviour : MonoBehaviour {
 
     float speed = 7;
     float speed2 = 7;
+    public GameObject RedLine1;
+    public GameObject RedLine2;
     public GameObject Max;
     public GameObject Min;
+    public GameObject Max2;
     public GameObject Player2;
     public GameObject enemy2;
     public GameObject missel;
@@ -19,12 +22,15 @@ public class PlayerBehaviour : MonoBehaviour {
 	GameObject tiro;
     GameObject tiro2;
     public GUIStyle style;
+    bool cutscene;
 
 
 	void Start () {
         atirou = false;
         atirou2 = false;
-	
+        cutscene = true;
+        Max2.SetActive(true);
+        
 	}
 	void OnCollisionEnter(Collision col)
 	{
@@ -32,6 +38,14 @@ public class PlayerBehaviour : MonoBehaviour {
 		{
 			ScoreManager.Dyes += 1;
 			Destroy(gameObject);
+            if (player1)
+			{
+				RedLine1.SetActive(true);	
+			}
+            if (!player1)
+			{
+				RedLine2.SetActive(true);
+			}
 		}
 	}
     void OnTriggerEnter(Collider col)
@@ -43,92 +57,114 @@ public class PlayerBehaviour : MonoBehaviour {
         }
     }
 	// Update is called once per frame
-	void Update () 
-	{
-		if (player1) {
-            if (Input.GetAxis("Player_H") < 0 && transform.position.x > Min.transform.position.x)
-				transform.Translate (0, Input.GetAxis ("Player_H") * speed * -2 * Time.deltaTime, 0);
-            if (Input.GetAxis("Player_H") > 0 && transform.position.x < Max.transform.position.x)
-				transform.Translate (0, Input.GetAxis ("Player_H") * speed * -2 * Time.deltaTime, 0);
-            if (Input.GetAxis("Player_V") < 0 && transform.position.y > 20.5)
-            {
-				transform.Translate (0, 0, Input.GetAxis ("Player_V") * speed * 2 * Time.deltaTime);
-				nave.transform.Rotate (0, 0, 2f);
-				if (nave.transform.rotation.eulerAngles.z > 45 && nave.transform.rotation.eulerAngles.z < 100)
-					nave.transform.rotation = Quaternion.Euler (nave.transform.rotation.eulerAngles.x, nave.transform.rotation.eulerAngles.y, 45);
-			}
-            if (Input.GetAxis("Player_V") > 0 && transform.position.y < 33.5f)
-            {
-                transform.Translate(0, 0, Input.GetAxis("Player_V") * speed * 2 * Time.deltaTime);
-				nave.transform.Rotate (0, 0, -2f);
-				if (nave.transform.rotation.eulerAngles.z < 320 && nave.transform.rotation.eulerAngles.z > 300)
-					nave.transform.rotation = Quaternion.Euler (nave.transform.rotation.eulerAngles.x, nave.transform.rotation.eulerAngles.y, 320);
-			}
-			if (Input.GetAxis ("Player_V") == 0) {
-				if (nave.transform.rotation.eulerAngles.z > 180)
-					nave.transform.Rotate (0, 0, 1.5f);
-				else if (nave.transform.rotation.eulerAngles.z > 0)
-					nave.transform.Rotate (0, 0, -1.5f);
-			}
-			if (Input.GetAxis ("Player_Fire") != 0 && !atirou) {
-				tiro = (GameObject)Instantiate (missel, missel.transform.position, missel.transform.rotation);
-				atirou = true;
-
-			}
-			if (atirou && tiro.transform.position.x > transform.position.x + 18) {
-				Destroy (tiro.gameObject);
-				atirou = false;
-			}
-			if (atirou) {
-				tiro.rigidbody.velocity = new Vector3 (speed * Time.deltaTime + 40,tiro.rigidbody.velocity.y, tiro.rigidbody.velocity.z); 
-			}
-		} 
-        else {
-            if (Input.GetAxis("Player2_H") < 0 && transform.position.x > Min.transform.position.x)
-				transform.Translate (0, Input.GetAxis ("Player2_H") * speed2 * -2 * Time.deltaTime, 0);
-            if (Input.GetAxis("Player2_H") > 0 && transform.position.x < Max.transform.position.x)
-				transform.Translate (0, Input.GetAxis ("Player2_H") * speed2 * -2 * Time.deltaTime, 0);
-            if (Input.GetAxis("Player2_V") < 0 && transform.position.y > 20.5)
-            {
-                transform.Translate(0, 0, Input.GetAxis("Player2_V") * speed2 * 2 * Time.deltaTime);
-				nave2.transform.Rotate (0, 0, 2f);
-				if (nave2.transform.rotation.eulerAngles.z > 45 && nave2.transform.rotation.eulerAngles.z < 100)
-					nave2.transform.rotation = Quaternion.Euler (nave2.transform.rotation.eulerAngles.x, nave2.transform.rotation.eulerAngles.y, 45);
-			}
-            if (Input.GetAxis("Player2_V") > 0 && transform.position.y < 33.5f)
-            {
-                transform.Translate(0, 0, Input.GetAxis("Player2_V") * speed2 * 2 * Time.deltaTime);
-				nave2.transform.Rotate (0, 0, -2f);
-				if (nave2.transform.rotation.eulerAngles.z < 320 && nave2.transform.rotation.eulerAngles.z > 300)
-					nave2.transform.rotation = Quaternion.Euler (nave2.transform.rotation.eulerAngles.x, nave2.transform.rotation.eulerAngles.y, 320);
-			}
-			if (Input.GetAxis ("Player2_V") == 0) {
-				if (nave2.transform.rotation.eulerAngles.z > 180)
-					nave2.transform.Rotate (0, 0, 1.5f);
-				else if (nave2.transform.rotation.eulerAngles.z > 0)
-					nave2.transform.Rotate (0, 0, -1.5f);
-			}
-			if (Input.GetAxis ("Player2_Fire") != 0 && !atirou2) {
-				tiro2 = (GameObject)Instantiate (missel2, missel2.transform.position, missel2.transform.rotation);
-				atirou2 = true;
-
-			}
-			if (atirou2 && tiro2.transform.position.x > transform.position.x + 18) {
-				Destroy (tiro2.gameObject);
-				atirou2 = false;
-			}
-			if (atirou2)
-				tiro2.rigidbody.velocity = new Vector3 (speed2 * Time.deltaTime + 40, tiro2.rigidbody.velocity.y, tiro2.rigidbody.velocity.z);
-		}
+    void Update()
+    {
         if (!ScoreManager.ativado)
         {
             if (Input.GetAxis("Player2_Go") != 0 && !Player2.gameObject.activeSelf || MenuSelectBehaviour.Options == "Player2" && !Player2.gameObject.activeSelf)
                 ScoreManager.ativado = true;
         }
-        else if(Player2 != null)
+        else if (Player2 != null)
         {
             Player2.gameObject.SetActive(true);
             enemy2.gameObject.SetActive(true);
         }
-	}
+      
+            if (transform.position.x < Max2.transform.position.x && Max2.activeSelf.Equals(true) )
+            {
+                transform.Translate(0, 0.05f * speed * -2 * Time.deltaTime, 0);
+                cutscene = true;
+
+            }
+            else { Max2.SetActive(false); cutscene = false; }
+        
+        if(cutscene.Equals(false)){
+           
+            if (player1)
+            {
+                if (Input.GetAxis("Player_H") < 0 && transform.position.x > Min.transform.position.x)
+                    transform.Translate(0, Input.GetAxis("Player_H") * speed * -2 * Time.deltaTime, 0);
+                if (Input.GetAxis("Player_H") > 0 && transform.position.x < Max.transform.position.x)
+                    transform.Translate(0, Input.GetAxis("Player_H") * speed * -2 * Time.deltaTime, 0);
+                if (Input.GetAxis("Player_V") < 0 && transform.position.y > 20.5)
+                {
+                    transform.Translate(0, 0, Input.GetAxis("Player_V") * speed * 2 * Time.deltaTime);
+                    nave.transform.Rotate(0, 0, 2f);
+                    if (nave.transform.rotation.eulerAngles.z > 45 && nave.transform.rotation.eulerAngles.z < 100)
+                        nave.transform.rotation = Quaternion.Euler(nave.transform.rotation.eulerAngles.x, nave.transform.rotation.eulerAngles.y, 45);
+                }
+                if (Input.GetAxis("Player_V") > 0 && transform.position.y < 33.5f)
+                {
+                    transform.Translate(0, 0, Input.GetAxis("Player_V") * speed * 2 * Time.deltaTime);
+                    nave.transform.Rotate(0, 0, -2f);
+                    if (nave.transform.rotation.eulerAngles.z < 320 && nave.transform.rotation.eulerAngles.z > 300)
+                        nave.transform.rotation = Quaternion.Euler(nave.transform.rotation.eulerAngles.x, nave.transform.rotation.eulerAngles.y, 320);
+                }
+                if (Input.GetAxis("Player_V") == 0)
+                {
+                    if (nave.transform.rotation.eulerAngles.z > 180)
+                        nave.transform.Rotate(0, 0, 1.5f);
+                    else if (nave.transform.rotation.eulerAngles.z > 0)
+                        nave.transform.Rotate(0, 0, -1.5f);
+                }
+                if (Input.GetAxis("Player_Fire") != 0 && !atirou)
+                {
+                    tiro = (GameObject)Instantiate(missel, missel.transform.position, missel.transform.rotation);
+                    atirou = true;
+
+                }
+                if (atirou && tiro.transform.position.x > transform.position.x + 18)
+                {
+                    Destroy(tiro.gameObject);
+                    atirou = false;
+                }
+                if (atirou)
+                {
+                    tiro.rigidbody.velocity = new Vector3(speed * Time.deltaTime + 40, tiro.rigidbody.velocity.y, tiro.rigidbody.velocity.z);
+                }
+            }
+            else
+            {
+                if (Input.GetAxis("Player2_H") < 0 && transform.position.x > Min.transform.position.x)
+                    transform.Translate(0, Input.GetAxis("Player2_H") * speed2 * -2 * Time.deltaTime, 0);
+                if (Input.GetAxis("Player2_H") > 0 && transform.position.x < Max.transform.position.x)
+                    transform.Translate(0, Input.GetAxis("Player2_H") * speed2 * -2 * Time.deltaTime, 0);
+                if (Input.GetAxis("Player2_V") < 0 && transform.position.y > 20.5)
+                {
+                    transform.Translate(0, 0, Input.GetAxis("Player2_V") * speed2 * 2 * Time.deltaTime);
+                    nave2.transform.Rotate(0, 0, 2f);
+                    if (nave2.transform.rotation.eulerAngles.z > 45 && nave2.transform.rotation.eulerAngles.z < 100)
+                        nave2.transform.rotation = Quaternion.Euler(nave2.transform.rotation.eulerAngles.x, nave2.transform.rotation.eulerAngles.y, 45);
+                }
+                if (Input.GetAxis("Player2_V") > 0 && transform.position.y < 33.5f)
+                {
+                    transform.Translate(0, 0, Input.GetAxis("Player2_V") * speed2 * 2 * Time.deltaTime);
+                    nave2.transform.Rotate(0, 0, -2f);
+                    if (nave2.transform.rotation.eulerAngles.z < 320 && nave2.transform.rotation.eulerAngles.z > 300)
+                        nave2.transform.rotation = Quaternion.Euler(nave2.transform.rotation.eulerAngles.x, nave2.transform.rotation.eulerAngles.y, 320);
+                }
+                if (Input.GetAxis("Player2_V") == 0)
+                {
+                    if (nave2.transform.rotation.eulerAngles.z > 180)
+                        nave2.transform.Rotate(0, 0, 1.5f);
+                    else if (nave2.transform.rotation.eulerAngles.z > 0)
+                        nave2.transform.Rotate(0, 0, -1.5f);
+                }
+                if (Input.GetAxis("Player2_Fire") != 0 && !atirou2)
+                {
+                    tiro2 = (GameObject)Instantiate(missel2, missel2.transform.position, missel2.transform.rotation);
+                    atirou2 = true;
+
+                }
+                if (atirou2 && tiro2.transform.position.x > transform.position.x + 18)
+                {
+                    Destroy(tiro2.gameObject);
+                    atirou2 = false;
+                }
+                if (atirou2)
+                    tiro2.rigidbody.velocity = new Vector3(speed2 * Time.deltaTime + 40, tiro2.rigidbody.velocity.y, tiro2.rigidbody.velocity.z);
+            }
+            
+        }
+    }
 }

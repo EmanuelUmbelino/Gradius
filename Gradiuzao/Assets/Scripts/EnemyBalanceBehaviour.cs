@@ -60,5 +60,6 @@ public class EnemyBalanceBehaviour : MonoBehaviour {
     {
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
+       
     }
 }
