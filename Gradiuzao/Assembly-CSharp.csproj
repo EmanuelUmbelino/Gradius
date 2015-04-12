@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MoonMoviment.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Choose_YouLose.cs" />
      <Compile Include="Assets\Scripts\Choose_YouLose2.cs" />
@@ -58,6 +57,7 @@
      <Compile Include="Assets\Scripts\EnemyShooterBehaviour.cs" />
      <Compile Include="Assets\Scripts\LookAt.cs" />
      <Compile Include="Assets\Scripts\MenuSelectBehaviour.cs" />
+     <Compile Include="Assets\Scripts\MoonMoviment.cs" />
      <Compile Include="Assets\Scripts\PlayerBehaviour.cs" />
      <Compile Include="Assets\Scripts\Rotation.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />

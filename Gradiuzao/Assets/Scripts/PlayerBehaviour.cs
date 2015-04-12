@@ -5,6 +5,8 @@ public class PlayerBehaviour : MonoBehaviour {
 
     float speed = 7;
     float speed2 = 7;
+    public GameObject Max;
+    public GameObject Min;
     public GameObject Player2;
     public GameObject enemy2;
     public GameObject missel;
@@ -44,17 +46,19 @@ public class PlayerBehaviour : MonoBehaviour {
 	void Update () 
 	{
 		if (player1) {
-			if (Input.GetAxis ("Player_H") < 0)
+            if (Input.GetAxis("Player_H") < 0 && transform.position.x > Min.transform.position.x)
 				transform.Translate (0, Input.GetAxis ("Player_H") * speed * -2 * Time.deltaTime, 0);
-			if (Input.GetAxis ("Player_H") > 0)
+            if (Input.GetAxis("Player_H") > 0 && transform.position.x < Max.transform.position.x)
 				transform.Translate (0, Input.GetAxis ("Player_H") * speed * -2 * Time.deltaTime, 0);
-			if (Input.GetAxis ("Player_V") < 0) {
+            if (Input.GetAxis("Player_V") < 0 && transform.position.y > 20.5)
+            {
 				transform.Translate (0, 0, Input.GetAxis ("Player_V") * speed * 2 * Time.deltaTime);
 				nave.transform.Rotate (0, 0, 2f);
 				if (nave.transform.rotation.eulerAngles.z > 45 && nave.transform.rotation.eulerAngles.z < 100)
 					nave.transform.rotation = Quaternion.Euler (nave.transform.rotation.eulerAngles.x, nave.transform.rotation.eulerAngles.y, 45);
 			}
-			if (Input.GetAxis ("Player_V") > 0) {
+            if (Input.GetAxis("Player_V") > 0 && transform.position.y < 33.5f)
+            {
                 transform.Translate(0, 0, Input.GetAxis("Player_V") * speed * 2 * Time.deltaTime);
 				nave.transform.Rotate (0, 0, -2f);
 				if (nave.transform.rotation.eulerAngles.z < 320 && nave.transform.rotation.eulerAngles.z > 300)
@@ -80,17 +84,19 @@ public class PlayerBehaviour : MonoBehaviour {
 			}
 		} 
         else {
-			if (Input.GetAxis ("Player2_H") < 0)
+            if (Input.GetAxis("Player2_H") < 0 && transform.position.x > Min.transform.position.x)
 				transform.Translate (0, Input.GetAxis ("Player2_H") * speed2 * -2 * Time.deltaTime, 0);
-			if (Input.GetAxis ("Player2_H") > 0)
+            if (Input.GetAxis("Player2_H") > 0 && transform.position.x < Max.transform.position.x)
 				transform.Translate (0, Input.GetAxis ("Player2_H") * speed2 * -2 * Time.deltaTime, 0);
-			if (Input.GetAxis ("Player2_V") < 0) {
+            if (Input.GetAxis("Player2_V") < 0 && transform.position.y > 20.5)
+            {
                 transform.Translate(0, 0, Input.GetAxis("Player2_V") * speed2 * 2 * Time.deltaTime);
 				nave2.transform.Rotate (0, 0, 2f);
 				if (nave2.transform.rotation.eulerAngles.z > 45 && nave2.transform.rotation.eulerAngles.z < 100)
 					nave2.transform.rotation = Quaternion.Euler (nave2.transform.rotation.eulerAngles.x, nave2.transform.rotation.eulerAngles.y, 45);
 			}
-			if (Input.GetAxis ("Player2_V") > 0) {
+            if (Input.GetAxis("Player2_V") > 0 && transform.position.y < 33.5f)
+            {
                 transform.Translate(0, 0, Input.GetAxis("Player2_V") * speed2 * 2 * Time.deltaTime);
 				nave2.transform.Rotate (0, 0, -2f);
 				if (nave2.transform.rotation.eulerAngles.z < 320 && nave2.transform.rotation.eulerAngles.z > 300)
